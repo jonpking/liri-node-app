@@ -29,3 +29,8 @@ spotify.search({ type: "track", query: searchTerm, limit: 1 }, function (err, da
     console.log("Artist(s): " + data.tracks.items[0].artists[0].name);
     console.log("Preview URL: " + data.tracks.items[0].preview_url);
 });
+
+axios.get("http://www.omdbapi.com/?apikey=trilogy&s=" + searchTerm)
+    .then(function (response) {
+
+    });
