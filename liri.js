@@ -4,14 +4,13 @@ var Spotify = require("node-spotify-api");
 const axios = require("axios");
 var moment = require("moment");
 var spotify = new Spotify(keys.spotify);
-const searchTerm = process.argv.slice(2).join(" ");
+const apiSelector = process.argv[2];
+let searchTerm = process.argv.slice(3).join(" ");
 
+console.log(apiSelector);
 console.log(searchTerm);
 
-// console.log(JSON.stringify(result, null, 2));
-
-switch (searchTerm) {
-
+switch (apiSelector) {
     case "concert-this":
         // Bands in Town
         axios.get("https://rest.bandsintown.com/artists/" + searchTerm + "/events?app_id=codingbootcamp")
@@ -39,6 +38,9 @@ switch (searchTerm) {
 
     case "movie-this":
         // OMDB
+        if (!searchTerm) {
+            searchTerm = "Mr. Nobody"
+        }
         axios.get("http://www.omdbapi.com/?apikey=trilogy&t=" + searchTerm)
             .then(function (response) {
                 console.log(`Movie Title: ${response.data.Title}`);
@@ -52,6 +54,3 @@ switch (searchTerm) {
             });
         break;
 }
-
-
-
