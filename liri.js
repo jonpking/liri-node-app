@@ -55,11 +55,15 @@ switch (apiSelector) {
 function concertThis(searchTerm) {
     axios.get("https://rest.bandsintown.com/artists/" + searchTerm + "/events?app_id=codingbootcamp")
         .then(function (response) {
-            console.log("Venue Name: " + response.data[0].venue.name);
-            console.log("Venue City: " + response.data[0].venue.city);
-            console.log("Venue Region/State: " + response.data[0].venue.region);
-            console.log("Venue Country: " + response.data[0].venue.country);
-            console.log("Venue Date: " + moment(response.data[0].datetime).format("MM/DD/YYYY"));
+            if (response.data[0] == undefined) {
+                console.log("Venue Information Unavailable");
+            } else {
+                console.log("Venue Name: " + response.data[0].venue.name);
+                console.log("Venue City: " + response.data[0].venue.city);
+                console.log("Venue Region/State: " + response.data[0].venue.region);
+                console.log("Venue Country: " + response.data[0].venue.country);
+                console.log("Venue Date: " + moment(response.data[0].datetime).format("MM/DD/YYYY"));
+            }
         })
         .catch(function (error) {
             console.log(error);
