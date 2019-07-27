@@ -20,17 +20,24 @@ console.log(searchTerm);
 //         console.log("Venue Date: " + moment(response.data[0].datetime).format("MM/DD/YYYY"));
 //     });
 
-spotify.search({ type: "track", query: searchTerm, limit: 1 }, function (err, data) {
-    if (err) {
-        return console.log("Error occured: " + err);
-    }
-    console.log("Track Name: " + data.tracks.items[0].name);
-    console.log("Album Name: " + data.tracks.items[0].album.name);
-    console.log("Artist(s): " + data.tracks.items[0].artists[0].name);
-    console.log("Preview URL: " + data.tracks.items[0].preview_url);
-});
+// spotify.search({ type: "track", query: searchTerm, limit: 1 }, function (err, data) {
+//     if (err) {
+//         return console.log("Error occured: " + err);
+//     }
+//     console.log("Track Name: " + data.tracks.items[0].name);
+//     console.log("Album Name: " + data.tracks.items[0].album.name);
+//     console.log("Artist(s): " + data.tracks.items[0].artists[0].name);
+//     console.log("Preview URL: " + data.tracks.items[0].preview_url);
+// });
 
-axios.get("http://www.omdbapi.com/?apikey=trilogy&s=" + searchTerm)
+axios.get("http://www.omdbapi.com/?apikey=trilogy&t=" + searchTerm)
     .then(function (response) {
-
+        console.log(`Movie Title: ${response.data.Title}`);
+        console.log(`Release Year: ${response.data.Year}`);
+        console.log(`IMDB Rating: ${response.data.imdbRating}`);
+        console.log(`Rotten Tomatoes Rating: ${response.data.Ratings[1].Value}`);
+        console.log(`Country Produced: ${response.data.Country}`);
+        console.log(`Language: ${response.data.Language}`);
+        console.log(`Plot: ${response.data.Plot}`);
+        console.log(`Actors: ${response.data.Actors}`);
     });
