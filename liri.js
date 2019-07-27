@@ -35,13 +35,17 @@ switch (apiSelector) {
             }
             // console.log(data);
             const dataArr = data.split(",");
-            console.log(dataArr);
+            // console.log(dataArr);
+            searchTerm = dataArr[1];
             switch (dataArr[0]) {
                 case "concert-this":
+                    concertThis(searchTerm);
                     break;
                 case "spotify-this-song":
+                    spotifyThisSong(searchTerm);
                     break;
                 case "movie-this":
+                    movieThis(searchTerm);
                     break;
             }
         });
