@@ -60,6 +60,9 @@ function concertThis(searchTerm) {
             console.log("Venue Region/State: " + response.data[0].venue.region);
             console.log("Venue Country: " + response.data[0].venue.country);
             console.log("Venue Date: " + moment(response.data[0].datetime).format("MM/DD/YYYY"));
+        })
+        .catch(function (error) {
+            console.log(error);
         });
 };
 
@@ -89,5 +92,8 @@ function movieThis(searchTerm) {
             console.log(`Language: ${response.data.Language}`);
             console.log(`Plot: ${response.data.Plot}`);
             console.log(`Actors: ${response.data.Actors}`);
+        })
+        .catch(function (error) {
+            console.log(error);
         });
 };
