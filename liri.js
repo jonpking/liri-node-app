@@ -1,4 +1,5 @@
 require("dotenv").config();
+const fs = require("fs");
 var keys = require("./keys.js");
 var Spotify = require("node-spotify-api");
 const axios = require("axios");
@@ -11,8 +12,9 @@ console.log(apiSelector);
 console.log(searchTerm);
 
 switch (apiSelector) {
+
+    // Bands in Town api search
     case "concert-this":
-        // Bands in Town
         axios.get("https://rest.bandsintown.com/artists/" + searchTerm + "/events?app_id=codingbootcamp")
             .then(function (response) {
                 console.log("Venue Name: " + response.data[0].venue.name);
@@ -23,8 +25,8 @@ switch (apiSelector) {
             });
         break;
 
+    // Spotify api search
     case "spotify-this-song":
-        // Spotify
         spotify.search({ type: "track", query: searchTerm, limit: 1 }, function (err, data) {
             if (err) {
                 return console.log("Error occured: " + err);
@@ -36,8 +38,8 @@ switch (apiSelector) {
         });
         break;
 
+    // OMDB api search
     case "movie-this":
-        // OMDB
         if (!searchTerm) {
             searchTerm = "Mr. Nobody"
         }
@@ -53,4 +55,23 @@ switch (apiSelector) {
                 console.log(`Actors: ${response.data.Actors}`);
             });
         break;
-}
+
+    case "do-what-it-says":
+        fs.readFile("random.txt", "utf8", function (error, data) {
+            if (error) {
+                return console.log(error);
+            }
+            // console.log(data);
+            const dataArr = data.split(",");
+            console.log(dataArr);
+            switch (dataArr[0]) {
+                case "concert-this":
+                    break;
+                case "spotify-this-song":
+                    break;
+                case "movie-this":
+                    break;
+            }
+        });
+        break;
+};
