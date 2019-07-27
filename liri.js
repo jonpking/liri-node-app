@@ -55,31 +55,11 @@ switch (apiSelector) {
 function concertThis(searchTerm) {
     axios.get("https://rest.bandsintown.com/artists/" + searchTerm + "/events?app_id=codingbootcamp")
         .then(function (response) {
-            if (response.data[0].venue.name == undefined) {
-                console.log("Venue Name: Not Available");
-            } else {
-                console.log("Venue Name: " + response.data[0].venue.name);
-            }
-            if (response.data[0].venue.city == undefined) {
-                console.log("Venue City: Not Available");
-            } else {
-                console.log("Venue City: " + response.data[0].venue.city);
-            }
-            if (response.data[0].venue.region == undefined) {
-                console.log("Venue Region/State: Not Available");
-            } else {
-                console.log("Venue Region/State: " + response.data[0].venue.region);
-            }
-            if (response.data[0].venue.country == undefined) {
-                console.log("Venue Country: Not Available");
-            } else {
-                console.log("Venue Country: " + response.data[0].venue.country);
-            }
-            if (response.data[0].venue.datetime == undefined) {
-                console.log("Venue Date: Not Available");
-            } else {
-                console.log("Venue Date: " + moment(response.data[0].datetime).format("MM/DD/YYYY"));
-            }
+            console.log("Venue Name: " + response.data[0].venue.name);
+            console.log("Venue City: " + response.data[0].venue.city);
+            console.log("Venue Region/State: " + response.data[0].venue.region);
+            console.log("Venue Country: " + response.data[0].venue.country);
+            console.log("Venue Date: " + moment(response.data[0].datetime).format("MM/DD/YYYY"));
         });
 };
 
@@ -88,26 +68,10 @@ function spotifyThisSong(searchTerm) {
         if (err) {
             return console.log("Error occured: " + err);
         }
-        if (data.tracks.items[0].name == undefined) {
-            console.log("Track Name: Not Available");
-        } else {
-            console.log("Track Name: " + data.tracks.items[0].name);
-        }
-        if (data.tracks.items[0].album.name == undefined) {
-            console.log("Album Name: Not Available");
-        } else {
-            console.log("Album Name: " + data.tracks.items[0].album.name);
-        }
-        if (data.tracks.items[0].artists[0].name == undefined) {
-            console.log("Artist(s): Not Available");
-        } else {
-            console.log("Artist(s): " + data.tracks.items[0].artists[0].name);
-        }
-        if (data.tracks.items[0].preview_url == undefined) {
-            console.log("Preview URL: Not Available");
-        } else {
-            console.log("Preview URL: " + data.tracks.items[0].preview_url);
-        }
+        console.log("Track Name: " + data.tracks.items[0].name);
+        console.log("Album Name: " + data.tracks.items[0].album.name);
+        console.log("Artist(s): " + data.tracks.items[0].artists[0].name);
+        console.log("Preview URL: " + data.tracks.items[0].preview_url);
     });
 };
 
@@ -117,45 +81,13 @@ function movieThis(searchTerm) {
     }
     axios.get("http://www.omdbapi.com/?apikey=trilogy&t=" + searchTerm)
         .then(function (response) {
-            if (response.data.Title == undefined) {
-                console.log(`Movie Title: Not Available`);
-            } else {
-                console.log(`Movie Title: ${response.data.Title}`);
-            }
-            if (response.data.Year == undefined) {
-                console.log(`Release Year: Not Available`);
-            } else {
-                console.log(`Release Year: ${response.data.Year}`);
-            }
-            if (response.data.imdbRating == undefined) {
-                console.log(`IMDB Rating: Not Available`);
-            } else {
-                console.log(`IMDB Rating: ${response.data.imdbRating}`);
-            }
-            if (response.data.Ratings[1].Value == undefined) {
-                console.log(`Rotten Tomatoes Rating: Not Available`);
-            } else {
-                console.log(`Rotten Tomatoes Rating: ${response.data.Ratings[1].Value}`);
-            }
-            if (response.data.Country == undefined) {
-                console.log(`Country Produced: Not Available`);
-            } else {
-                console.log(`Country Produced: ${response.data.Country}`);
-            }
-            if (response.data.Language == undefined) {
-                console.log(`Language: Not Available`);
-            } else {
-                console.log(`Language: ${response.data.Language}`);
-            }
-            if (response.data.Plot == undefined) {
-                console.log(`Plot: Not Available`);
-            } else {
-                console.log(`Plot: ${response.data.Plot}`);
-            }
-            if (response.data.Actors == undefined) {
-                console.log(`Actors: Not Available`);
-            } else {
-                console.log(`Actors: ${response.data.Actors}`);
-            }
+            console.log(`Movie Title: ${response.data.Title}`);
+            console.log(`Release Year: ${response.data.Year}`);
+            console.log(`IMDB Rating: ${response.data.imdbRating}`);
+            console.log(`Rotten Tomatoes Rating: ${response.data.Ratings[1].Value}`);
+            console.log(`Country Produced: ${response.data.Country}`);
+            console.log(`Language: ${response.data.Language}`);
+            console.log(`Plot: ${response.data.Plot}`);
+            console.log(`Actors: ${response.data.Actors}`);
         });
 };
